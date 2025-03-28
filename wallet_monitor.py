@@ -50,14 +50,10 @@ def monitor():
         for tx in txs:
             sig = tx["signature"]
             if sig not in SEEN_TXS:
-                message = (
-                    "*New transaction detected:*
+                message = f"""*New transaction detected:*
 
-"
-                    f"`{sig}`
-"
-                    f"[View on Solana Explorer](https://solscan.io/tx/{sig})"
-                )
+`{sig}`
+[View on Solana Explorer](https://solscan.io/tx/{sig})"""
                 print(f"New TX: {sig}")
                 send_telegram_alert(message)
                 SEEN_TXS.add(sig)
